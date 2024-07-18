@@ -2,3 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.auth-container {
+  @apply flex flex-col items-center justify-center h-screen bg-gray-900 text-white;
+}
+
+.auth-container h1 {
+  @apply text-4xl mb-6;
+}
+
+.auth-container input {
+  @apply bg-gray-800 py-3 px-4 mb-2 block focus:outline-none w-full text-white;
+}
+
+.auth-container button {
+  @apply bg-green-500 hover:bg-green-400 px-4 py-2 rounded-sm mb-4;
+}
+
+.flex-center {
+  @apply flex justify-center items-center h-full;
+}
+
+.form-container {
+  @apply bg-gray-700 p-10;
+}
+
+.form-container h2 {
+  @apply text-2xl mb-4 text-white;
+}
+
+.form-container input, .form-container textarea {
+  @apply bg-gray-800 py-3 px-4 mb-2 block focus:outline-none w-full text-white;
+}
+
+.form-container button {
+  @apply bg-green-500 hover:bg-green-400 px-4 py-2 rounded-sm;
+}
+
+.task-card {
+  @apply bg-gray-700 hover:bg-gray-600 cursor-pointer px-20 py-5 m-2;
+}
+
+.task-card h1 {
+  @apply text-xl text-white;
+}
+
+.task-card p {
+  @apply text-gray-300;
+}
+
+.task-card span {
+  @apply text-gray-400 text-xs;
+}
+
+.task-card button {
+  @apply bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center text-white;
+}

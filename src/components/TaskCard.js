@@ -1,4 +1,5 @@
-import { useRouter } from "next/navigation";
+"use client";
+import { useRouter } from "next/navigation"; // Correct path for `useRouter`
 import { useTasks } from "../context/TasksContext";
 import { toast } from "react-hot-toast";
 
@@ -17,10 +18,10 @@ export const TaskCard = ({ task }) => {
           className="bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center"
           onClick={(e) => {
             e.stopPropagation();
-            const accept = window.confirm("are you sure?");
+            const accept = window.confirm("Are you sure?");
             if (accept) {
               deleteTask(task.id);
-              toast.success("task deleted successfully");
+              toast.success("Task deleted successfully");
             }
           }}
         >
