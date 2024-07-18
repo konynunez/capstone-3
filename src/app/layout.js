@@ -1,18 +1,17 @@
 "use client";
-import { metadata } from './metadata';
 import { TaskProvider } from "../context/TasksContext";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "./Toaster";
 import Layout from "../components/Layout";
 import { Navbar } from "../components/NavBar";
 import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="eng">
+    <html lang="en">
       <body>
         <TaskProvider>
           <Navbar />
-          <Layout metadata={metadata}>
+          <Layout>
             {children}
           </Layout>
           <Toaster />

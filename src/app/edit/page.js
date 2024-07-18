@@ -1,3 +1,2 @@
 import NewFormPage from "../../new/page";
-
-export default NewFormPage
+export default NewFormPage;
