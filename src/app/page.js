@@ -9,11 +9,11 @@ import Auth from "../components/Auth";
 function Page() {
   const { tasks } = useTasks();
   const [user, setUser] = useState(null);
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {  
       if (user) {
         setUser(user);
+
       } else {
         setUser(null);
       }

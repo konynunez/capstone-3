@@ -12,9 +12,11 @@ function Page({ params }) {
 
   const onSubmit = handleSubmit((data) => {
     if (params && params.id) {
+    
       updateTask(params.id, data);
       toast.success("Task updated successfully");
     } else {
+      
       createTask(data.title, data.description);
       toast.success("Task created successfully");
     }

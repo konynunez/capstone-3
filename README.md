@@ -1,7 +1,7 @@
 
 # Capstone-3 
 ## By Kony Nunez
-### TODO App that you can create, edit, and delete a task.  
+### Tasks App that you can create, edit, and delete a task. You can log in and out and register.
 
 
 #
@@ -20,9 +20,11 @@ npm run dev
 
 ## Project Details
 
+- To sign the email address is (konynunez@gmail.com)
+password: (123456)
 
-- Check  [GitHub repository](https:/) 
-- Check  [Deployment Platform](https:/)
+- Check  [GitHub repository]("https://github.com/konynunez/capstone-3.git") 
+- Check  [Deployment Platform](https://capstone-3-sandy.vercel.app/new)
 
 ## Technologies used in this project
 - React

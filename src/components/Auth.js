@@ -13,13 +13,16 @@ export default function Auth() {
     e.preventDefault();
     try {
       if (isRegistering) {
+        debugger;
         await createUserWithEmailAndPassword(auth, email, password);
         toast.success("Registration successful");
       } else {
+        debugger;
         await signInWithEmailAndPassword(auth, email, password);
         toast.success("Sign in successful");
       }
     } catch (error) {
+      debugger;
       console.error("Authentication error:", error);
       toast.error("Authentication error");
     }
@@ -48,7 +51,8 @@ export default function Auth() {
           />
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-400 px-4 py-2 rounded-sm mb-2 w-full"
+            className="bg-green-500
+                        hover:bg-green-400 px-4 py-2 rounded-sm mb-2 w-full"
           >
             {isRegistering ? "Register" : "Sign In"}
           </button>
@@ -63,3 +67,5 @@ export default function Auth() {
     </div>
   );
 }
+
+            
