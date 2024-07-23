@@ -13,24 +13,23 @@ export const TaskCard = ({ task }) => {
       onClick={() => router.push(`/edit/${task.id}`)}
     >
       <div className="flex justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">{task.title}</h1>
-          <p className="text-gray-300">{task.description}</p>
-          <span className="text-gray-400">{task.id}</span>
-        </div>
+        <h1>{task.title}</h1>
         <button
+          className="bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center"
           onClick={(e) => {
             e.stopPropagation();
-            if (window.confirm("Are you sure?")) {
+            const accept = window.confirm("Are you sure?");
+            if (accept) {
               deleteTask(task.id);
               toast.success("Task deleted successfully");
             }
           }}
-          className="bg-red-700 hover:bg-red-600 text-sm px-3 py-1 rounded-sm"
         >
           Delete
         </button>
       </div>
+      <p className="text-gray-300">{task.description}</p>
+      <span className="text-gray-400 text-xs">{task.id}</span>
     </div>
   );
 };

@@ -51,8 +51,7 @@ export default function Auth() {
           />
           <button
             type="submit"
-            className="bg-green-500
-                        hover:bg-green-400 px-4 py-2 rounded-sm mb-2 w-full"
+            className="bg-green-500hover:bg-green-400 px-4 py-2 rounded-sm mb-2 w-full"
           >
             {isRegistering ? "Register" : "Sign In"}
           </button>

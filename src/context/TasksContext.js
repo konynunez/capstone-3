@@ -1,76 +1,94 @@
+"use client";
 import { createContext, useContext, useState, useEffect } from "react";
-import { collection, onSnapshot, deleteDoc, doc, addDoc } from "firebase/firestore"; 
-import { db } from "../../firebase"; 
+import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
+import { db, auth } from "../../firebase"; // Adjust the path if needed
+import { onAuthStateChanged } from "firebase/auth";
+import { toast } from "react-hot-toast";
 
-// Create context
-const TasksContext = createContext();
+export const TaskContext = createContext();
 
-// Custom hook to use the TasksContext
 export const useTasks = () => {
-  const context = useContext(TasksContext);
-  if (!context) throw new Error("useTasks must be used within a TaskProvider");
+  const context = useContext(TaskContext);
+  if (!context) throw new Error("useTasks must be used within a provider");
   return context;
 };
 
-// TaskProvider component
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [user, setUser] = useState(null);
 
-  // Fetch tasks from Firestore on mount
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "tasks"),
-      (querySnapshot) => {
-        const tasksData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setTasks(tasksData);
-      },
-      (error) => {
-        console.error("Error fetching tasks: ", error);
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
       }
-    );
-    return () => unsubscribe();
+    });
+
+    const unsubscribeTasks = onSnapshot(collection(db, "tasks"), (querySnapshot) => {
+      const tasksData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setTasks(tasksData);
+    });
+
+    return () => {
+      unsubscribeAuth();
+      unsubscribeTasks();
+    };
   }, []);
 
-  // Create a new task in Firestore
   const createTask = async (title, description) => {
+    if (!user) {
+      toast.error("You must be logged in to create a task.");
+      return;
+    }
+
     try {
-      const newTask = {
-        title,
-        description,
-        createdAt: new Date() // Adding createdAt field for timestamp
-      };
-      await addDoc(collection(db, "tasks"), newTask); // Use addDoc to add to Firestore
+      const newTask = { title, description };
+      const docRef = await addDoc(collection(db, "tasks"), newTask);
+      setTasks([...tasks, { ...newTask, id: docRef.id }]);
+      toast.success("Task created successfully");
     } catch (error) {
-      console.error("Error creating task: ", error);
+      console.error("Error adding task: ", error);
+      toast.error("Error adding task.");
     }
   };
 
-  // Update a task locally (assuming Firestore syncs automatically)
-  const updateTask = (id, updatedFields) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, ...updatedFields } : task
-      )
-    );
-    // For full sync, you may need to update Firestore directly as well
-  };
-
-  // Delete a task from Firestore
   const deleteTask = async (id) => {
+    if (!user) {
+      toast.error("You must be logged in to delete a task.");
+      return;
+    }
+
     try {
       await deleteDoc(doc(db, "tasks", id));
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+      setTasks(tasks.filter((task) => task.id !== id));
+      toast.success("Task deleted successfully");
     } catch (error) {
       console.error("Error deleting task: ", error);
+      toast.error("Error deleting task.");
+    }
+  };
+
+  const updateTask = async (id, newData) => {
+    if (!user) {
+      toast.error("You must be logged in to update a task.");
+      return;
+    }
+
+    try {
+      await updateDoc(doc(db, "tasks", id), newData);
+      setTasks(tasks.map((task) => (task.id === id ? { ...task, ...newData } : task)));
+      toast.success("Task updated successfully");
+    } catch (error) {
+      console.error("Error updating task: ", error);
+      toast.error("Error updating task.");
     }
   };
 
   return (
-    <TasksContext.Provider value={{ tasks, createTask, updateTask, deleteTask }}>
+    <TaskContext.Provider value={{ tasks, createTask, deleteTask, updateTask }}>
       {children}
-    </TasksContext.Provider>
+    </TaskContext.Provider>
   );
 };
