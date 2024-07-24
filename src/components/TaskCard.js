@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { useTasks } from "../context/TasksContext";
 import { toast } from "react-hot-toast";
-
 export const TaskCard = ({ task }) => {
   const router = useRouter();
   const { deleteTask } = useTasks();

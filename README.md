@@ -1,4 +1,3 @@
-
 # Capstone-3 
 ## By Kony Nunez
 ### Tasks App that you can create, edit, and delete a task. You can log in and out and register.
@@ -24,7 +23,7 @@ npm run dev
 password: (123456)
 
 - Check  [GitHub repository]("https://github.com/konynunez/capstone-3.git") 
-- Check  [Deployment Platform](https://capstone-3-sandy.vercel.app/new)
+- Check  [Deployment Platform](https://capstone-3-sandy.vercel.app)
 
 ## Technologies used in this project
 - React
@@ -32,3 +31,4 @@ password: (123456)
 - Tailwind
 - Firebase/firestore
 - Vercel 
+- Jest Tests

@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
 import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
-import { db, auth } from "../../firebase"; // Adjust the path if needed
+import { db, auth } from "../../firebase"; 
 import { onAuthStateChanged } from "firebase/auth";
 import { toast } from "react-hot-toast";
 

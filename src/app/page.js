@@ -7,32 +7,32 @@ import { TaskCard } from "../components/TaskCard";
 import Auth from "../components/Auth";
 
 function Page() {
-  const { tasks } = useTasks(); // Assuming useTasks provides access to tasks
-  const [user, setUser] = useState(null); // State to track authenticated user
+  const { tasks } = useTasks(); 
+  const [user, setUser] = useState(null); 
 
   useEffect(() => {
-    // Effect to listen to authentication state changes
+    
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user); // Set user state if authenticated
+        setUser(user); 
       } else {
         setUser(null); // Reset user state if not authenticated
       }
     });
 
-    return () => unsubscribe(); // Clean up function to unsubscribe from listener
-  }, []); // Empty dependency array means this effect runs only once
+    return () => unsubscribe(); 
+  }, []); 
 
-  // Render Auth component if no user is authenticated
+  
   if (!user) {
     return <Auth />;
   }
 
-  // Render authenticated user view
+  
   return (
     <div className="flex flex-col items-center">
       <button
-        onClick={() => auth.signOut()} // Sign out button
+        onClick={() => auth.signOut()} 
         className="bg-red-500 hover:bg-red-400 px-5 py-2 text-gray-50 font-bold rounded-sm mt-5"
       >
         Sign Out
