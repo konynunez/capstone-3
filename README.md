@@ -19,11 +19,13 @@ npm run dev
 
 ## Project Details
 
-- To sign the email address is (konynunez@gmail.com)
-password: (123456)
+## Project Details
 
-- Check  [GitHub Repository]("https://github.com/konynunez/capstone-3.git") 
-- Check  [Deployment Platform]("https://capstone-3-sandy.vercel.app")
+- To sign in, the email address is `konynunez@gmail.com` and the password is `123456`.
+
+- Check the [GitHub Repository](https://github.com/konynunez/capstone-3.git).
+
+- Check the [Deployment Platform](https://capstone-3-sandy.vercel.app).
 
 ## Technologies used in this project
 - React
