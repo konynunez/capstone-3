@@ -1,6 +1,6 @@
 # Capstone-3 
 ## By Kony Nunez
-### Tasks App that you can create, edit, and delete a task. You can log in and out and register.
+### This app helps users manage their tasks efficiently using Firebase for backend services and React for the frontend. Key features include user authentication, task creation, updating, deletion, and real-time updates. The app displays a list of tasks, provides buttons to create and manage tasks, and uses toast notifications for user feedback.
 
 
 #
@@ -22,8 +22,8 @@ npm run dev
 - To sign the email address is (konynunez@gmail.com)
 password: (123456)
 
-- Check  [GitHub repository]("https://github.com/konynunez/capstone-3.git") 
-- Check  [Deployment Platform](https://capstone-3-sandy.vercel.app)
+- Check  [GitHub Repository]("https://github.com/konynunez/capstone-3.git") 
+- Check  [Deployment Platform]("https://capstone-3-sandy.vercel.app")
 
 ## Technologies used in this project
 - React
@@ -32,3 +32,4 @@ password: (123456)
 - Firebase/firestore
 - Vercel 
 - Jest Tests
+- React Hot toast
