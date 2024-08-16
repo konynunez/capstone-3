@@ -16,9 +16,6 @@ Run development server
 npm run dev
 ```
 
-
-## Project Details
-
 ## Project Details
 
 - To sign in, the email address is `konynunez@gmail.com` and the password is `123456`.
